@@ -1,7 +1,6 @@
 import 'package:clean_arc_flutter/app/misc/constants.dart';
 import 'package:clean_arc_flutter/data/infrastructures/encrypter_interface.dart';
 import 'package:clean_arc_flutter/domains/entities/user.dart';
-import 'package:clean_arc_flutter/domains/entities/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserData {
@@ -11,11 +10,6 @@ class UserData {
   String phone;
   String email;
   String photo;
-
-  // profilenew
-  String nama;
-  String alamat;
-  String pekerjaan;
 
   // token
   String token;
@@ -34,12 +28,6 @@ class UserData {
 
   UserData(this._encrypter) {
     this.loadData();
-  }
-
-  void fromProfileNew(ProfileNew profile) {
-    this.nama = profile.name;
-    this.alamat = profile.alamat;
-    this.pekerjaan = profile.pekerjaan;
   }
 
   void fromUser(User user) {
@@ -64,10 +52,6 @@ class UserData {
 
   void loadData() {
     this._getSharedPreferences().then((sp) {
-      this.nama = _decryptValue(sp.getString(AppConstants.USER_DATA_NAMA));
-      this.alamat = _decryptValue(sp.getString(AppConstants.USER_DATA_ALAMAT));
-      this.pekerjaan =
-          _decryptValue(sp.getString(AppConstants.USER_DATA_PEKERJAAN));
       this.id = int.parse(_decryptValue(sp.getString(AppConstants.USER_DATA_ID),
           type: "integer"));
       this.name = _decryptValue(sp.getString(AppConstants.USER_DATA_NAME));
@@ -112,9 +96,6 @@ class UserData {
   }
 
   void clearProperties() {
-    this.nama = null;
-    this.alamat = null;
-    this.pekerjaan = null;
     this.id = null;
     this.forgotPassword = null;
     this.name = null;
@@ -133,9 +114,6 @@ class UserData {
   Future<void> save() {
     return this._getSharedPreferences().then((sp) {
       sp.setString(AppConstants.USER_DATA_ID, _encryptValue(this.id));
-      sp.setString(AppConstants.USER_DATA_NAMA, _encryptValue(this.nama));
-      sp.setString(AppConstants.USER_DATA_ALAMAT, _encryptValue(this.alamat));
-      sp.setString(AppConstants.USER_DATA_PEKERJAAN, _encryptValue(this.pekerjaan));
       sp.setString(AppConstants.USER_DATA_NAME, _encryptValue(this.name));
       sp.setString(AppConstants.USER_DATA_PHONE, _encryptValue(this.phone));
       sp.setString(AppConstants.USER_DATA_EMAIL, _encryptValue(this.email));
