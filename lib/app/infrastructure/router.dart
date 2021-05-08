@@ -4,10 +4,10 @@ import 'package:clean_arc_flutter/app/ui/pages/pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Router {
+class Routers {
   RouteObserver<PageRoute> routeObserver;
 
-  Router() {
+  Routers() {
     routeObserver = RouteObserver<PageRoute>();
   }
 

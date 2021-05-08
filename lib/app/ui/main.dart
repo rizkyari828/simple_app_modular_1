@@ -19,7 +19,7 @@ main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  final Router _router = Router();
+  final Routers _router = Routers();
   static bool isConnectedToInternet = false;
   final _navigatorKey = GlobalKey<NavigatorState>();
 
