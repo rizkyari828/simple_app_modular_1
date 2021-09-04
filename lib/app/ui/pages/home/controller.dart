@@ -17,11 +17,6 @@ class HomeController extends BaseController {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   void onInternetConnected() {
     super.onInternetConnected();
     // kFlushbar..show(getContext());

@@ -5,8 +5,8 @@ import 'package:injector/injector.dart';
 class PresenterModule {
   static void init(Injector injector) {
     
-    injector.registerDependency<LoginPresenter>((Injector injector) {
-      return LoginPresenter(injector.getDependency<LoginUseCase>());
+    injector.registerDependency<LoginPresenter>(() {
+      return LoginPresenter(injector.get<LoginUseCase>());
     });
   }
 }

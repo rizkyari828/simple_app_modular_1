@@ -2,7 +2,7 @@ import 'package:clean_arc_flutter/app/misc/constants.dart';
 import 'package:flutter/material.dart';
 
 class CommonButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final dynamic buttonText;
   final Color buttonTextColor;
   final Color buttonColor;
@@ -11,13 +11,13 @@ class CommonButton extends StatelessWidget {
   final FontWeight buttonTextWeight;
   final Color borderColor;
   final EdgeInsetsGeometry outerPadding;
-  final double elevation;
+  final double? elevation;
 
   /// HATI-HATI KETIKA MENGEDIT REUSABLE WIDGET/COMPONENT
   /// Pastikan tidak merusak tampilan yang lainnya
   /// Karena REUSABLE WIDGET/COMPONENT memiliki arti widget/component ini dipakai di berbagai screen/layar
   const CommonButton(
-      {Key key,
+      {Key? key,
       this.onPressed,
       @required this.buttonText,
       this.borderColor = Colors.transparent,
@@ -76,7 +76,7 @@ class CommonButton extends StatelessWidget {
 /// =====================================================
 ///
 class CommonButtonNoPadding extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final dynamic buttonText;
   final Color buttonTextColor;
   final Color buttonColor;
@@ -86,7 +86,7 @@ class CommonButtonNoPadding extends StatelessWidget {
   final Color borderColor;
 
   const CommonButtonNoPadding(
-      {Key key,
+      {Key? key,
       this.onPressed,
       @required this.buttonText,
       this.borderColor = Colors.transparent,

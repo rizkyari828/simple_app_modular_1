@@ -5,11 +5,11 @@ import 'package:clean_arc_flutter/app/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends View {
-  HomePage({Key key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => new _HomePageState(
-      AppComponent.getInjector().getDependency<HomeController>());
+  _HomePageState createState() =>
+      new _HomePageState(AppComponent.getInjector().get<HomeController>());
 }
 
 class _HomePageState extends ViewState<HomePage, HomeController>
@@ -19,30 +19,31 @@ class _HomePageState extends ViewState<HomePage, HomeController>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
   void dispose() {
     super.dispose();
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
   }
 
   @override
-  Widget buildPage() {
-    return new Scaffold(
-        key: globalKey,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              child: Text('Button 1'),
-              onPressed: () {
-                Navigator.pushNamed(context, Pages.profile);
-              },
-            ),
-          ],
-        ));
-  }
+  Widget get view => ControlledWidgetBuilder<HomeController>(
+        builder: (context, controller) => new Scaffold(
+          key: globalKey,
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              RaisedButton(
+                child: Text('Button 1'),
+                onPressed: () {
+                  Navigator.pushNamed(context, Pages.profile);
+                },
+              ),
+            ],
+          ),
+        ),
+      );
 }

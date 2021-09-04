@@ -2,8 +2,8 @@
 import 'package:clean_arc_flutter/data/payload/contracts/auth_request.dart';
 
 class LoginApiRequest extends LoginRequestInterface {
-  String username;
-  String password;
+  String? username;
+  String? password;
 
   LoginApiRequest({this.username, this.password});
 

@@ -4,11 +4,11 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends View {
-  ProfilePage({Key key}) : super(key: key);
+  ProfilePage({Key? key}) : super(key: key);
 
   @override
   _ProfilePageState createState() => new _ProfilePageState(
-      AppComponent.getInjector().getDependency<ProfileController>());
+      AppComponent.getInjector().get<ProfileController>());
 }
 
 class _ProfilePageState extends ViewState<ProfilePage, ProfileController>
@@ -18,19 +18,18 @@ class _ProfilePageState extends ViewState<ProfilePage, ProfileController>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
   void dispose() {
     super.dispose();
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
   }
 
   @override
-  Widget buildPage() {
-    return new Scaffold(
+  Widget get view => ControlledWidgetBuilder<ProfileController>(
+        builder: (context, controller) => new Scaffold(
         key: globalKey,
-        body: Text("Cek bisa gak "));
+        body: Text("Cek bisa gak "),),);
   }
-}

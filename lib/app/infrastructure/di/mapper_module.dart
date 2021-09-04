@@ -3,6 +3,6 @@ import 'package:injector/injector.dart';
 
 class MapperModule {
   static void init(Injector injector) {
-    injector.registerSingleton<UserMapper>((_) => UserMapper());
+    injector.registerSingleton<UserMapper>(() => UserMapper());
   }
 }

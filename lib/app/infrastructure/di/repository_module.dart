@@ -9,19 +9,19 @@ import 'package:injector/injector.dart';
 class RepositoryModule {
 
   static void init(Injector injector) {
-    injector.registerDependency<UserApiRepository>( (Injector injector) {
+    injector.registerDependency<UserApiRepository>( () {
       return UserApiRepository(
-        injector.getDependency<ApiService>(),
-        injector.getDependency<Endpoints>(),
-        injector.getDependency<UserMapper>()
+        injector.get<ApiService>(),
+        injector.get<Endpoints>(),
+        injector.get<UserMapper>()
       );
     });
     
-    injector.registerDependency<AuthApiRepository>( (Injector injector) {
+    injector.registerDependency<AuthApiRepository>( () {
       return AuthApiRepository(
-        injector.getDependency<ApiService>(),
-        injector.getDependency<Endpoints>(),
-        injector.getDependency<UserMapper>()
+        injector.get<ApiService>(),
+        injector.get<Endpoints>(),
+        injector.get<UserMapper>()
       );
     });
   }

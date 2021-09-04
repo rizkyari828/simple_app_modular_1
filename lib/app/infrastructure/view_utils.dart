@@ -1,14 +1,19 @@
-import 'package:progress_dialog/progress_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 
 class ViewUtils {
-  static ProgressDialog pr;
+  static ProgressDialog? pr;
 
   static void showProgressDialog(context) {
-    if (pr == null) pr = new ProgressDialog(context);
-    pr.show();
+    if (pr == null) pr = new ProgressDialog(context: context);
+    pr?.show(
+      max: 100,
+      msg: 'File Downloading...',
+      progressBgColor: Colors.transparent,
+    );
   }
 
   static void dismissProgressDialog() {
-    if (pr != null) pr.hide();
+    if (pr != null) pr?.close();
   }
 }

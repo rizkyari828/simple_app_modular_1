@@ -13,12 +13,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:logging/logging.dart';
+
 
 main() async {
   await dotenv.load(fileName: '.env'); // load env
   AppComponent.init(); // init dependency
   await _initFabric(); // init
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runZonedGuarded<Future<void>>(() async {
@@ -27,6 +28,20 @@ main() async {
   });
 }
 
+Future<void> _initFabric() async {
+  await Firebase.initializeApp();
+  await FirebaseCrashlytics.instance
+      .setCrashlyticsCollectionEnabled(kReleaseMode);
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+}
+
+void _initLogger() {
+  // Logger.root.level = Level.ALL;
+  // Logger.root.info("Logger initialized.");
+}
+
+
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   final CustomRouter.Router _router;
@@ -34,11 +49,11 @@ class MyApp extends StatelessWidget {
   final _navigatorKey = GlobalKey<NavigatorState>();
   final FirebaseAnalyticsObserver _observer =
       AppComponent.getInjector().get<FirebaseAnalyticsObserver>();
+
   MyApp() : _router = CustomRouter.Router() {
     _initLogger(); // init logger
-   
   }
-  @override
+
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: _navigatorKey,
@@ -57,16 +72,4 @@ class MyApp extends StatelessWidget {
       navigatorObservers: [_router.routeObserver, _observer],
     );
   }
-}
-
-void _initLogger() {
-  Logger.root.level = Level.ALL;
-  Logger.root.info("Logger initialized.");
-}
-
-Future<void> _initFabric() async {
-  await Firebase.initializeApp();
-  await FirebaseCrashlytics.instance
-      .setCrashlyticsCollectionEnabled(kReleaseMode);
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 }

@@ -8,21 +8,22 @@ import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:event_bus/event_bus.dart';
 
 class ApiService extends ApiServiceInterface {
-  Dio _dio;
-  EventBus _eventBus;
-  bool _needThrowError;
+  late Dio _dio;
+  late EventBus _eventBus;
+  late bool _needThrowError;
 
   ApiService(Dio dio, EventBus eventBus) {
     _dio = dio;
     _eventBus = eventBus;
+    _needThrowError = false;
   }
 
   // send http request
   Future<Map<String, dynamic>> invokeHttp(dynamic url, RequestType type,
-      {Map<String, String> headers,
+      {Map<String, String>? headers,
       dynamic body,
-      Map<String, String> params,
-      Encoding encoding,
+      Map<String, String>? params,
+      Encoding? encoding,
       bool needThrowError = true}) async {
     Response response;
     this._needThrowError = needThrowError;
@@ -38,9 +39,9 @@ class ApiService extends ApiServiceInterface {
 
   // setup requiest type and configuration
   Future<Response> _invoke(dynamic url, RequestType type,
-      {Map<String, String> headers,
+      {Map<String, String>? headers,
       dynamic body,
-      Map<String, String> params}) async {
+      Map<String, String>? params}) async {
     Response response;
     try {
       switch (type) {
@@ -76,11 +77,23 @@ class ApiService extends ApiServiceInterface {
 
       if (!response.data['success']) {
         throw DioError(
-            response: new Response(statusCode: response.statusCode, data: {
-          'message': response.data['message'],
-          'origin': response.data['origin'],
-          'data' : response.data['data']
-        }));
+            response: new Response(
+                statusCode: response.statusCode,
+                data: {
+                  'message': response.data['message'],
+                  'origin': response.data['origin'],
+                  'data': response.data['data']
+                },
+                requestOptions: new RequestOptions(data: {
+                  'message': response.data['message'],
+                  'origin': response.data['origin'],
+                  'data': response.data['data']
+                }, path: '')),
+            requestOptions: new RequestOptions(data: {
+              'message': response.data['message'],
+              'origin': response.data['origin'],
+              'data': response.data['data']
+            }, path: ''));
       }
 
       return response;
@@ -92,7 +105,7 @@ class ApiService extends ApiServiceInterface {
     }
   }
 
-  void notifyError(Response resp) {
+  void notifyError(Response? resp) {
     if (!this._needThrowError) return;
 
     _eventBus.fire(new DioErrorEvent(

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class RtoWidget extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// HATI-HATI KETIKA MENGEDIT REUSABLE WIDGET/COMPONENT
   /// Pastikan tidak merusak tampilan yang lainnya
   /// Karena REUSABLE WIDGET/COMPONENT memiliki arti widget/component ini dipakai di berbagai screen/layar
-  const RtoWidget({Key key, this.onPressed}) : super(key: key);
+  const RtoWidget({Key? key, this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ class S {
  
   static const GeneratedLocalizationsDelegate delegate = GeneratedLocalizationsDelegate();
 
-  static S of(BuildContext context) {
+  static S? of(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
   
@@ -75,25 +75,29 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
     ];
   }
 
-  LocaleListResolutionCallback listResolution({Locale fallback}) {
-    return (List<Locale> locales, Iterable<Locale> supported) {
+  LocaleListResolutionCallback listResolution({Locale? fallback}) {
+    return (List<Locale>? locales, Iterable<Locale> supported) {
       if (locales == null || locales.isEmpty) {
         return fallback ?? supported.first;
       } else {
-        return _resolve(locales.first, fallback, supported);
+        if (fallback != null) {
+          return _resolve(locales.first, fallback, supported);
+        }
       }
     };
   }
 
-  LocaleResolutionCallback resolution({Locale fallback}) {
-    return (Locale locale, Iterable<Locale> supported) {
-      return _resolve(locale, fallback, supported);
+  LocaleResolutionCallback resolution({Locale? fallback}) {
+    return (Locale? locale, Iterable<Locale> supported) {
+      if (locale != null && fallback != null) {
+        return _resolve(locale, fallback, supported);
+      }
     };
   }
 
-  Locale _resolve(Locale locale, Locale fallback, Iterable<Locale> supported) {
+  Locale _resolve(Locale? locale, Locale fallback, Iterable<Locale> supported) {
     if (locale == null || !isSupported(locale)) {
-      return fallback ?? supported.first;
+      return fallback;
     }
 
     final Locale languageLocale = Locale(locale.languageCode, "");
@@ -102,7 +106,7 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
     } else if (supported.contains(languageLocale)) {
       return languageLocale;
     } else {
-      final Locale fallbackLocale = fallback ?? supported.first;
+      final Locale fallbackLocale = fallback;
       return fallbackLocale;
     }
   }
@@ -113,8 +117,8 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
   }
 
   @override
-  bool isSupported(Locale locale) =>
-    locale != null && supportedLocales.contains(locale);
+  bool isSupported(Locale? locale) =>
+      locale != null && supportedLocales.contains(locale);
 
   @override
   bool shouldReload(GeneratedLocalizationsDelegate old) => false;

@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 
 class LoginController extends BaseController {
   LoginPresenter _presenter;
-  User _auth;
+  late User _auth;
   UserData _userData;
   bool loading = false;
 
@@ -20,7 +20,7 @@ class LoginController extends BaseController {
   TextEditingController get employeeNumberInput => _employeeInput;
   TextEditingController get passwordInput => _passwordInput;
   ErrorMessage _errorMessage = new ErrorMessage();
-  User get auth => _auth;
+  User? get auth => _auth;
   ErrorMessage get errorMessage => _errorMessage;
   bool get isErrorEmployeeCode => _isErrorEmployeeCode;
   bool get isObscured => _isObscured;
@@ -47,7 +47,6 @@ class LoginController extends BaseController {
 
     _presenter.loginOnNext = (User auth) {
       _auth = auth;
-      print("Data User onnext ${_auth.profile.name}");
       refreshUI();
     };
 
@@ -56,7 +55,7 @@ class LoginController extends BaseController {
       _userData.password = _passwordInput.text;
       await _userData.save();
 
-      print("Data User auth ${_auth.profile.name}");
+      print("Data User auth ${_auth.profile?.name}");
       print("Data User sp ${_userData.name}");
 
       dismissLoading();
@@ -68,11 +67,6 @@ class LoginController extends BaseController {
     };
   }
 
-  @override
-  void dispose() {
-    _presenter.dispose();
-    super.dispose();
-  }
 
   void toggleVisibility() {
     _isObscured = !_isObscured;

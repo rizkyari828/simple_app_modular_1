@@ -10,24 +10,24 @@ import 'package:injector/injector.dart';
 
 class ControllerModule {
   static void init(Injector injector) {
-    injector.registerDependency<SplashController>((Injector injector) {
-      return SplashController(injector.getDependency<UserData>());
+    injector.registerDependency<SplashController>(() {
+      return SplashController(injector.get<UserData>());
     });
-    injector.registerDependency<MainController>((Injector injector) {
-      return MainController(injector.getDependency<UserData>());
+    injector.registerDependency<MainController>(() {
+      return MainController(injector.get<UserData>());
     });
-    injector.registerDependency<HomeController>((Injector injector) {
-      return HomeController(injector.getDependency<UserData>());
+    injector.registerDependency<HomeController>(() {
+      return HomeController(injector.get<UserData>());
     });
-    injector.registerDependency<MidController>((Injector injector) {
-      return MidController(injector.getDependency<UserData>());
+    injector.registerDependency<MidController>(() {
+      return MidController(injector.get<UserData>());
     });
-    injector.registerDependency<ProfileController>((Injector injector) {
-      return ProfileController(injector.getDependency<UserData>());
+    injector.registerDependency<ProfileController>(() {
+      return ProfileController(injector.get<UserData>());
     });
-    injector.registerDependency<LoginController>((Injector injector) {
-      return LoginController(injector.getDependency<LoginPresenter>(),
-          injector.getDependency<UserData>());
+    injector.registerDependency<LoginController>(() {
+      return LoginController(
+          injector.get<LoginPresenter>(), injector.get<UserData>());
     });
   }
 }

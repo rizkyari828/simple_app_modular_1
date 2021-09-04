@@ -8,11 +8,11 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends View {
-  LoginPage({Key key}) : super(key: key);
+  LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => new _LoginPageState(
-      AppComponent.getInjector().getDependency<LoginController>());
+      AppComponent.getInjector().get<LoginController>());
 }
 
 class _LoginPageState extends ViewState<LoginPage, LoginController>
@@ -22,18 +22,18 @@ class _LoginPageState extends ViewState<LoginPage, LoginController>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
   void dispose() {
     super.dispose();
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
   }
 
   @override
-  Widget buildPage() {
-    return new Scaffold(
+  Widget get view => ControlledWidgetBuilder<LoginController>(
+        builder: (context, controller) => new Scaffold(
       key: globalKey,
       body: Container(
         alignment: Alignment.bottomCenter,
@@ -52,10 +52,10 @@ class _LoginPageState extends ViewState<LoginPage, LoginController>
               child: CommonTextInput(
                 isDense: true,
                 isError:
-                    controller.errorMessage.employeecode?.isNotEmpty ?? false,
+                    controller.errorMessage.employeecode.isNotEmpty,
                 errorText: controller.errorMessage.employeecode,
                 controller: controller.employeeNumberInput,
-                placeholder: S.of(context).input_placeholder_employee,
+                placeholder: S.of(context)?.input_placeholder_employee ?? "",
                 prefixIcon: Icon(
                   Icons.account_circle,
                   size: 30,
@@ -73,7 +73,7 @@ class _LoginPageState extends ViewState<LoginPage, LoginController>
                 },
                 isError: false,
                 controller: controller.passwordInput,
-                placeholder: S.of(context).input_placeholder_password,
+                placeholder: S.of(context)?.input_placeholder_password ?? "",
                 prefixIcon: Icon(
                   Icons.vpn_key,
                   size: 30,
@@ -88,9 +88,9 @@ class _LoginPageState extends ViewState<LoginPage, LoginController>
                 isDisabled: false,
                 buttonText: controller.isLoading
                     ? CommonLoading()
-                    : S.of(context).label_enter.toUpperCase(),
+                    : S.of(context)?.label_enter.toUpperCase(),
                 onPressed: () {
-                  _onLoginButtonPressed();
+                  controller.login();
                 },
               ),
               padding: EdgeInsets.fromLTRB(
@@ -100,11 +100,5 @@ class _LoginPageState extends ViewState<LoginPage, LoginController>
           ],
         ),
       ),
-    );
+    ),);
   }
-
-  void _onLoginButtonPressed() {
-    print("data kirim nama ${controller.employeeNumberInput.text}, Password ${controller.passwordInput.text}");
-    controller.login();
-  }
-}

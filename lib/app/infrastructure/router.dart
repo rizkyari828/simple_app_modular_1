@@ -4,15 +4,15 @@ import 'package:clean_arc_flutter/app/ui/pages/pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Routers {
-  RouteObserver<PageRoute> routeObserver;
+class Router {
+  late RouteObserver<PageRoute> routeObserver;
 
-  Routers() {
+  Router() {
     routeObserver = RouteObserver<PageRoute>();
   }
 
-  Route<dynamic> getRoute(RouteSettings settings) {
-    switch (settings.name) {
+  Route<dynamic>? getRoute(RouteSettings? settings) {
+    switch (settings?.name) {
       case Pages.main:
         return _buildRoute(settings, new MainPage());
       case Pages.login:
@@ -22,7 +22,7 @@ class Routers {
     }
   }
 
-  MaterialPageRoute _buildRoute(RouteSettings settings, Widget builder) {
+  MaterialPageRoute _buildRoute(RouteSettings? settings, Widget builder) {
     return new MaterialPageRoute(
       settings: settings,
       builder: (ctx) => builder,

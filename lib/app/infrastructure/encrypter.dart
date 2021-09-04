@@ -2,11 +2,10 @@ import 'package:clean_arc_flutter/data/infrastructures/encrypter_interface.dart'
 import 'package:encrypt/encrypt.dart' as AESEncryptor;
 
 class Encrypter implements EncrypterInterface {
-
   @override
-  String encrypt(String str) {
+  String? encrypt(String? str) {
     try {
-      var result = _getEncrypter().encrypt(str, iv: _getIV()).base64;
+      var result = _getEncrypter().encrypt(str ?? "", iv: _getIV()).base64;
       return result;
     } catch (e) {
       return null;
@@ -14,7 +13,7 @@ class Encrypter implements EncrypterInterface {
   }
 
   @override
-  String decrypt(String str) {
+  String? decrypt(String str) {
     var target = AESEncryptor.Encrypted.fromBase64(str);
     try {
       var result = _getEncrypter().decrypt(target, iv: _getIV());

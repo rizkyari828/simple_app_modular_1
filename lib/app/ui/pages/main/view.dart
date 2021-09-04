@@ -1,4 +1,3 @@
-
 import 'package:clean_arc_flutter/app/infrastructure/app_component.dart';
 import 'package:clean_arc_flutter/app/misc/constants.dart';
 import 'package:clean_arc_flutter/app/ui/pages/mid/view.dart';
@@ -10,16 +9,19 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends View {
-  MainPage({Key key}) : super(key: key);
+  MainPage({Key? key}) : super(key: key);
 
   @override
-  _MainPageState createState() => new _MainPageState(
-      AppComponent.getInjector().getDependency<MainController>());
+  _MainPageState createState() =>
+      new _MainPageState(AppComponent.getInjector().get<MainController>());
 }
 
 class _MainPageState extends ViewState<MainPage, MainController>
     with WidgetsBindingObserver {
-  _MainPageState(MainController controller) : super(controller);
+  MainController _controller;
+  _MainPageState(this._controller) : super(_controller);
+
+  AppLifecycleState? _state;
 
   List<Widget> pages = [
     new HomePage(),
@@ -30,54 +32,54 @@ class _MainPageState extends ViewState<MainPage, MainController>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
   void dispose() {
     super.dispose();
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
   }
 
   @override
-Widget buildPage() {
-    return new Scaffold(
-      key: globalKey,
-      body: pages[controller.tabIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        iconSize: 30,
-        backgroundColor: AppConstants.COLOR_WHITE,
-        selectedItemColor: AppConstants.COLOR_PRIMARY_COLOR,
-        unselectedItemColor: Colors.grey,
-        items: [
-          new BottomNavigationBarItem(
-            icon: new ImageIcon(
-              AssetImage('lib/app/ui/assets/icons/attend.png'),
-              size: 30,
-            ),
-            title: new Text(S.of(context).home_bar),
+  Widget get view => ControlledWidgetBuilder<MainController>(
+        builder: (context, controller) => Scaffold(
+          key: globalKey,
+          body: pages[controller.tabIndex ?? 0],
+          bottomNavigationBar: BottomNavigationBar(
+            iconSize: 30,
+            backgroundColor: AppConstants.COLOR_WHITE,
+            selectedItemColor: AppConstants.COLOR_PRIMARY_COLOR,
+            unselectedItemColor: Colors.grey,
+            items: [
+              new BottomNavigationBarItem(
+                icon: new ImageIcon(
+                  AssetImage('lib/app/ui/assets/icons/attend.png'),
+                  size: 30,
+                ),
+                title: new Text(S.of(context)?.home_bar ?? ""),
+              ),
+              new BottomNavigationBarItem(
+                icon: new ImageIcon(
+                  AssetImage('lib/app/ui/assets/icons/attend.png'),
+                  size: 30,
+                ),
+                title: new Text(S.of(context)?.tourism?? ""),
+              ),
+              new BottomNavigationBarItem(
+                icon: new ImageIcon(
+                  AssetImage('lib/app/ui/assets/icons/attend.png'),
+                  size: 30,
+                ),
+                title: new Text(S.of(context)?.profile_bar?? ""),
+              ),
+            ],
+            currentIndex: controller.tabIndex ?? 0,
+            type: BottomNavigationBarType.fixed,
+            onTap: (index) {
+              controller.changeTab(index);
+            },
           ),
-          new BottomNavigationBarItem(
-            icon: new ImageIcon(
-              AssetImage('lib/app/ui/assets/icons/attend.png'),
-              size: 30,
-            ),
-            title: new Text(S.of(context).tourism),
-          ),
-          new BottomNavigationBarItem(
-            icon: new ImageIcon(
-              AssetImage('lib/app/ui/assets/icons/attend.png'),
-              size: 30,
-            ),
-            title: new Text(S.of(context).profile_bar),
-          ),
-        ],
-        currentIndex: controller.tabIndex,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          controller.changeTab(index);
-        },
-      ),
-    );
-  }
+        ),
+      );
 }

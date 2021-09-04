@@ -8,9 +8,9 @@ import 'package:clean_arc_flutter/data/persistences/repositories/user_repositori
 import 'package:clean_arc_flutter/domains/entities/user.dart';
 
 class UserApiRepository extends UserRepository {
-  UserMapper _mapper;
-  ApiServiceInterface _service;
-  Endpoints _endpoints;
+  late UserMapper _mapper;
+  late ApiServiceInterface _service;
+  late Endpoints _endpoints;
 
   UserApiRepository(ApiServiceInterface service, Endpoints endpoints, UserMapper mapper) {
     _mapper = mapper;
@@ -30,13 +30,13 @@ class UserApiRepository extends UserRepository {
 
 
   @override
-  Future<List<User>> getAll() {
+  Future<List<User>>? getAll() {
     // TODO: implement getAll
     return null;
   }
 
   @override
-  Future<bool> verifyUserByPassword(request) {
+  Future<bool>? verifyUserByPassword(request) {
     // TODO: implement verifyUserByPassword
     return null;
   }

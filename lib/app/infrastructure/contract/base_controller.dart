@@ -1,18 +1,26 @@
-import 'package:clean_arc_flutter/app/infrastructure/app_component.dart';
 import 'package:clean_arc_flutter/app/infrastructure/event/connection.dart';
 import 'package:clean_arc_flutter/app/infrastructure/event/error.dart';
 import 'package:clean_arc_flutter/app/infrastructure/event/reset_ui.dart';
-import 'package:clean_arc_flutter/app/infrastructure/view_utils.dart';
+import 'package:clean_arc_flutter/app/misc/RouteArguments.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:event_bus/event_bus.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import '../app_component.dart';
+import '../view_utils.dart';
+
 
 class BaseController extends Controller {
-  EventBus _eventBus = AppComponent.getInjector().getDependency<EventBus>();
+  EventBus _eventBus = AppComponent.getInjector().get<EventBus>();
   bool _internetAvailable = true;
+  RouteArguments? args;
   bool isLoading = false;
 
   bool get internetAvailable => _internetAvailable;
+
+  BaseController() : super() {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
 
   @override
   void initListeners() {
@@ -65,9 +73,13 @@ class BaseController extends Controller {
     });
   }
 
-  void onInternetConnected() {}
+  void onInternetConnected() {
+    // do something
+  }
 
-  void onInternetDisconnected() {}
+  void onInternetDisconnected() {
+    // do something
+  }
 
   void onProgressLoading() {
     ViewUtils.showProgressDialog(getContext());
@@ -77,16 +89,31 @@ class BaseController extends Controller {
     ViewUtils.dismissProgressDialog();
   }
 
-  void onLoad() {
-    isLoading = true;
+  void delayedRefresh({int duration = 1}) {
+    Future.delayed(new Duration(seconds: duration), refreshUI);
+  }
+
+  void resetPage() {
+    dismissLoading();
     refreshUI();
   }
 
   void dismissLoading() {
     isLoading = false;
+    refreshUI();
+  }
+
+  void onLoad() {
+    loadOnStart();
+    refreshUI();
   }
 
   void showLoading() {
+    isLoading = true;
+    refreshUI();
+  }
+
+  void loadOnStart() {
     isLoading = true;
   }
 }

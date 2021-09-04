@@ -30,14 +30,13 @@ class $id extends MessageLookupByLibrary {
 
 typedef Future<dynamic> LibraryLoader();
 Map<String, LibraryLoader> _deferredLibraries = {
-	"id": () => Future.value(null),
-
+  "id": () => Future.value(null),
 };
 
-MessageLookupByLibrary _findExact(localeName) {
+MessageLookupByLibrary? _findExact(localeName) {
   switch (localeName) {
     case "id":
-        return _$id;
+      return _$id;
 
     default:
       return null;
@@ -47,8 +46,7 @@ MessageLookupByLibrary _findExact(localeName) {
 /// User programs should call this before using [localeName] for messages.
 Future<bool> initializeMessages(String localeName) async {
   var availableLocale = Intl.verifiedLocale(
-      localeName,
-          (locale) => _deferredLibraries[locale] != null,
+      localeName, (locale) => _deferredLibraries[locale] != null,
       onFailure: (_) => null);
   if (availableLocale == null) {
     return Future.value(false);
@@ -70,9 +68,9 @@ bool _messagesExistFor(String locale) {
   }
 }
 
-MessageLookupByLibrary _findGeneratedMessagesFor(locale) {
-  var actualLocale = Intl.verifiedLocale(locale, _messagesExistFor,
-      onFailure: (_) => null);
+MessageLookupByLibrary? _findGeneratedMessagesFor(locale) {
+  var actualLocale =
+      Intl.verifiedLocale(locale, _messagesExistFor, onFailure: (_) => null);
   if (actualLocale == null) return null;
   return _findExact(actualLocale);
 }

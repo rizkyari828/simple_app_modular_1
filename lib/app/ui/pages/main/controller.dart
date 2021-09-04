@@ -5,9 +5,9 @@ import 'package:clean_arc_flutter/app/misc/user_data.dart';
 
 class MainController extends BaseController {
   UserData _sp;
-  int _tabIndex;
+  int? _tabIndex;
 
-  int get tabIndex => _tabIndex;
+  int? get tabIndex => _tabIndex;
   UserData get sp => _sp;
 
   MainController(this._sp) : super() {

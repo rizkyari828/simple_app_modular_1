@@ -4,11 +4,11 @@ import 'package:clean_arc_flutter/use_cases/auth/login.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class LoginPresenter extends Presenter {
-  LoginUseCase _usecase;
+  late LoginUseCase _usecase;
 
-  Function loginOnNext;
-  Function loginOnComplete;
-  Function loginOnError;
+  late Function loginOnNext;
+  late Function loginOnComplete;
+  late Function loginOnError;
 
   LoginPresenter(LoginUseCase usecase) {
     _usecase = usecase;
@@ -28,7 +28,7 @@ class _LoginObserver implements Observer<User> {
 
   _LoginObserver(this._presenter);
   
-  void onNext(User auth) {
+  void onNext(User? auth) {
     _presenter.loginOnNext(auth);
   }
 

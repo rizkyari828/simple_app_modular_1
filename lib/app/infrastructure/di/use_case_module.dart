@@ -8,12 +8,12 @@ import 'package:injector/injector.dart';
 class UseCaseModule {
   static void init(Injector injector) {
     // Use case
-    injector.registerDependency<GetUserUseCase>((Injector injector) {
-      return GetUserUseCase(injector.getDependency<UserApiRepository>());
+    injector.registerDependency<GetUserUseCase>(( ) {
+      return GetUserUseCase(injector.get<UserApiRepository>());
     });
 
-    injector.registerDependency<LoginUseCase>((Injector injector) {
-      return LoginUseCase(injector.getDependency<AuthApiRepository>());
+    injector.registerDependency<LoginUseCase>(() {
+      return LoginUseCase(injector.get<AuthApiRepository>());
     });
   }
 }

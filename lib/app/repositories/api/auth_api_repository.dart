@@ -7,9 +7,9 @@ import 'package:clean_arc_flutter/data/persistences/repositories/auth_repository
 import 'package:clean_arc_flutter/domains/entities/user.dart';
 
 class AuthApiRepository extends AuthRepository {
-  ApiServiceInterface _service;
-  Endpoints _endpoints;
-  UserMapper _mapper;
+  late ApiServiceInterface _service;
+  late Endpoints _endpoints;
+  late UserMapper _mapper;
 
   AuthApiRepository(
       ApiServiceInterface service, Endpoints endpoints, UserMapper mapper) {
@@ -26,7 +26,6 @@ class AuthApiRepository extends AuthRepository {
     } catch (error) {
       rethrow;
     }
-    print("Masuk data repo ${resp}");
     return _mapper.getUserApiConverter(resp);
   }
 }

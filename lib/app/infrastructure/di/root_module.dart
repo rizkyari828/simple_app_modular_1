@@ -1,11 +1,16 @@
 import 'dart:convert';
+
+import 'package:clean_arc_flutter/app/infrastructure/TimeConverter.dart';
 import 'package:clean_arc_flutter/app/infrastructure/encrypter.dart';
 import 'package:clean_arc_flutter/app/infrastructure/endpoints.dart';
 import 'package:clean_arc_flutter/app/infrastructure/persistences/api_service.dart';
 import 'package:clean_arc_flutter/app/misc/user_data.dart';
-import 'package:dio_http_cache/dio_http_cache.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:event_bus/event_bus.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:injector/injector.dart';
@@ -14,49 +19,61 @@ import 'package:injector/injector.dart';
 class RootModule {
   static void init(Injector injector) {
     injector.registerSingleton<Endpoints>(
-        (_) => Endpoints(DotEnv().env['BASE_URL']));
-    injector.registerSingleton<UserData>((Injector injector) => UserData(
-      injector.getDependency<Encrypter>()
-    ));
+        () => Endpoints(dotenv.env['BASE_URL'] ?? ""));
+    injector.registerDependency<TimeConverter>(() => TimeConverter());
+    injector
+        .registerSingleton<UserData>(() => UserData(injector.get<Encrypter>()));
+    injector
+        .registerSingleton<FirebaseMessaging>(() => FirebaseMessaging.instance);
 
-    injector.registerDependency<Dio>((Injector injector) {
+    injector.registerDependency<Dio>(() {
       var dio = Dio();
       dio.options.connectTimeout = 60000;
       dio.options.receiveTimeout = 60000;
 
-      var userData = injector.getDependency<UserData>();
-      var endpoints = injector.getDependency<Endpoints>();
+      var userData = injector.get<UserData>();
+      var endpoints = injector.get<Endpoints>();
 
       // use for log response and request data
-      dio.interceptors.add(LogInterceptor(
-          requestBody: true,
-          responseBody: true,
-          requestHeader: true,
-          responseHeader: true,
-          request: true));
+      if (kDebugMode) {
+        dio.interceptors.add(LogInterceptor(
+            requestBody: true,
+            responseBody: true,
+            requestHeader: true,
+            responseHeader: false,
+            request: true));
+      }
       dio.interceptors.add(
           DioCacheManager(CacheConfig(baseUrl: endpoints.baseUrl)).interceptor);
-
-      if (userData.token != null && userData.token.isNotEmpty)
-        dio.options.headers["Authorization"] = "Bearer " + userData.token;
+      var tokenCheck = userData.token?.isNotEmpty ?? false;
+      var token = userData.token ?? "";
+      if (userData.token != null && tokenCheck)
+        dio.options.headers["Authorization"] = "Bearer " + token;
       dio.options.baseUrl = endpoints.baseUrl;
 
       (dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson;
       return dio;
     });
 
-    injector.registerSingleton<EventBus>((Injector injector) {
+    injector.registerSingleton<EventBus>(() {
       return EventBus();
     });
 
-    injector.registerDependency<ApiService>((Injector injector) {
-      return ApiService(
-          injector.getDependency<Dio>(), injector.getDependency<EventBus>());
+    injector.registerDependency<ApiService>(() {
+      return ApiService(injector.get<Dio>(), injector.get<EventBus>());
     });
 
 
+    injector.registerSingleton<FirebaseAnalytics>(() {
+      return FirebaseAnalytics();
+    });
 
-    injector.registerDependency<Encrypter>((Injector injector) {
+    injector.registerSingleton<FirebaseAnalyticsObserver>(() {
+      return FirebaseAnalyticsObserver(
+          analytics: injector.get<FirebaseAnalytics>());
+    });
+
+    injector.registerDependency<Encrypter>(() {
       return Encrypter();
     });
   }
