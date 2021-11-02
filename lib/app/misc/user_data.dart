@@ -1,6 +1,6 @@
-import 'package:clean_arc_flutter/app/misc/constants.dart';
-import 'package:clean_arc_flutter/data/infrastructures/encrypter_interface.dart';
-import 'package:clean_arc_flutter/domains/entities/user.dart';
+import 'package:modular_1/app/misc/constants.dart';
+import 'package:modular_1/data/infrastructures/encrypter_interface.dart';
+import 'package:modular_1/domains/entities/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserData {

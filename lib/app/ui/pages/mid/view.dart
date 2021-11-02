@@ -1,6 +1,6 @@
-import 'package:clean_arc_flutter/app/infrastructure/app_component.dart';
-import 'package:clean_arc_flutter/app/ui/pages/mid/controller.dart';
-import 'package:clean_arc_flutter/app/ui/widgets/rto_widget.dart';
+import 'package:modular_1/app/infrastructure/app_component.dart';
+import 'package:modular_1/app/ui/pages/mid/controller.dart';
+import 'package:modular_1/app/ui/widgets/rto_widget.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter/material.dart';
 

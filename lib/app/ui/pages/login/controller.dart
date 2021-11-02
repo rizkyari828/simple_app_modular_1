@@ -1,9 +1,9 @@
-import 'package:clean_arc_flutter/app/infrastructure/contract/base_controller.dart';
-import 'package:clean_arc_flutter/app/misc/user_data.dart';
-import 'package:clean_arc_flutter/app/ui/pages/login/presenter.dart';
-import 'package:clean_arc_flutter/app/ui/pages/pages.dart';
-import 'package:clean_arc_flutter/data/payload/api/auth/login_api_payload.dart';
-import 'package:clean_arc_flutter/domains/entities/user.dart';
+import 'package:modular_1/app/infrastructure/contract/base_controller.dart';
+import 'package:modular_1/app/misc/user_data.dart';
+import 'package:modular_1/app/ui/pages/login/presenter.dart';
+import 'package:modular_1/app/ui/pages/pages.dart';
+import 'package:modular_1/data/payload/api/auth/login_api_payload.dart';
+import 'package:modular_1/domains/entities/user.dart';
 import 'package:flutter/widgets.dart';
 
 class LoginController extends BaseController {
@@ -66,7 +66,6 @@ class LoginController extends BaseController {
       // do log here
     };
   }
-
 
   void toggleVisibility() {
     _isObscured = !_isObscured;

@@ -1,4 +1,4 @@
-import 'package:clean_arc_flutter/domains/entities/user.dart';
+import 'package:modular_1/domains/entities/user.dart';
 
 class UserMapper {
   User getUserApiConverter(Map<String, dynamic> response) {

@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:clean_arc_flutter/app/infrastructure/TimeConverter.dart';
-import 'package:clean_arc_flutter/app/infrastructure/encrypter.dart';
-import 'package:clean_arc_flutter/app/infrastructure/endpoints.dart';
-import 'package:clean_arc_flutter/app/infrastructure/persistences/api_service.dart';
-import 'package:clean_arc_flutter/app/misc/user_data.dart';
+import 'package:modular_1/app/infrastructure/TimeConverter.dart';
+import 'package:modular_1/app/infrastructure/encrypter.dart';
+import 'package:modular_1/app/infrastructure/endpoints.dart';
+import 'package:modular_1/app/infrastructure/persistences/api_service.dart';
+import 'package:modular_1/app/misc/user_data.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:dio/dio.dart';
@@ -62,7 +62,6 @@ class RootModule {
     injector.registerDependency<ApiService>(() {
       return ApiService(injector.get<Dio>(), injector.get<EventBus>());
     });
-
 
     injector.registerSingleton<FirebaseAnalytics>(() {
       return FirebaseAnalytics();

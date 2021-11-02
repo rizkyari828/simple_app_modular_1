@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:clean_arc_flutter/app/infrastructure/app_component.dart';
-import 'package:clean_arc_flutter/app/infrastructure/router.dart'
-    as CustomRouter;
-import 'package:clean_arc_flutter/app/ui/pages/splash/view.dart';
-import 'package:clean_arc_flutter/app/ui/res/generated/i18n.dart';
+import 'package:modular_1/app/infrastructure/app_component.dart';
+import 'package:modular_1/app/infrastructure/router.dart' as CustomRouter;
+import 'package:modular_1/app/ui/pages/splash/view.dart';
+import 'package:modular_1/app/ui/res/generated/i18n.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -13,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 
 main() async {
   await dotenv.load(fileName: '.env'); // load env
@@ -39,8 +37,6 @@ void _initLogger() {
   // Logger.root.level = Level.ALL;
   // Logger.root.info("Logger initialized.");
 }
-
-
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

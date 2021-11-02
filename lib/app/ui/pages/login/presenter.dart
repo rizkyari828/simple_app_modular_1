@@ -1,6 +1,6 @@
-import 'package:clean_arc_flutter/data/payload/contracts/auth_request.dart';
-import 'package:clean_arc_flutter/domains/entities/user.dart';
-import 'package:clean_arc_flutter/use_cases/auth/login.dart';
+import 'package:modular_1/data/payload/contracts/auth_request.dart';
+import 'package:modular_1/domains/entities/user.dart';
+import 'package:modular_1/use_cases/auth/login.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class LoginPresenter extends Presenter {
@@ -27,7 +27,7 @@ class _LoginObserver implements Observer<User> {
   LoginPresenter _presenter;
 
   _LoginObserver(this._presenter);
-  
+
   void onNext(User? auth) {
     _presenter.loginOnNext(auth);
   }

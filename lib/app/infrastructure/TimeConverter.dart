@@ -1,7 +1,6 @@
-import 'package:clean_arc_flutter/data/infrastructures/time_converter_interface.dart';
+import 'package:modular_1/data/infrastructures/time_converter_interface.dart';
 import 'package:intl/intl.dart';
 import 'package:timeago/timeago.dart' as timeago;
-
 
 class TimeConverter extends TimeConverterInterface {
   TimeConverter() {

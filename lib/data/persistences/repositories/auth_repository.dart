@@ -1,5 +1,5 @@
-import 'package:clean_arc_flutter/data/payload/contracts/auth_request.dart';
-import 'package:clean_arc_flutter/domains/entities/user.dart';
+import 'package:modular_1/data/payload/contracts/auth_request.dart';
+import 'package:modular_1/domains/entities/user.dart';
 
 // Declaring interface that the entity should be implemented
 abstract class AuthRepository {

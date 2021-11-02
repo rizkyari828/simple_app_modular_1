@@ -1,4 +1,4 @@
-import 'package:clean_arc_flutter/app/misc/constants.dart';
+import 'package:modular_1/app/misc/constants.dart';
 import 'package:flutter/material.dart';
 
 class CommonButton extends StatelessWidget {

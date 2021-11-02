@@ -1,4 +1,4 @@
-import 'package:clean_arc_flutter/data/persistences/mappers/user_mapper.dart';
+import 'package:modular_1/data/persistences/mappers/user_mapper.dart';
 import 'package:injector/injector.dart';
 
 class MapperModule {

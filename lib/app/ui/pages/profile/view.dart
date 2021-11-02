@@ -1,5 +1,5 @@
-import 'package:clean_arc_flutter/app/infrastructure/app_component.dart';
-import 'package:clean_arc_flutter/app/ui/pages/profile/controller.dart';
+import 'package:modular_1/app/infrastructure/app_component.dart';
+import 'package:modular_1/app/ui/pages/profile/controller.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +30,8 @@ class _ProfilePageState extends ViewState<ProfilePage, ProfileController>
   @override
   Widget get view => ControlledWidgetBuilder<ProfileController>(
         builder: (context, controller) => new Scaffold(
-        key: globalKey,
-        body: Text("Cek bisa gak "),),);
-  }
+          key: globalKey,
+          body: Text("Cek bisa gak "),
+        ),
+      );
+}

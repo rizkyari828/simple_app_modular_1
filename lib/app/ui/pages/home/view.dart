@@ -1,7 +1,7 @@
-import 'package:clean_arc_flutter/app/infrastructure/app_component.dart';
-import 'package:clean_arc_flutter/app/ui/pages/home/controller.dart';
+import 'package:modular_1/app/infrastructure/app_component.dart';
+import 'package:modular_1/app/ui/pages/home/controller.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'package:clean_arc_flutter/app/ui/pages/pages.dart';
+import 'package:modular_1/app/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends View {

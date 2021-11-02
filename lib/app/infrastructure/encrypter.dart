@@ -1,4 +1,4 @@
-import 'package:clean_arc_flutter/data/infrastructures/encrypter_interface.dart';
+import 'package:modular_1/data/infrastructures/encrypter_interface.dart';
 import 'package:encrypt/encrypt.dart' as AESEncryptor;
 
 class Encrypter implements EncrypterInterface {

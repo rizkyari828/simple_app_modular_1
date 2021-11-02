@@ -1,11 +1,11 @@
-import 'package:clean_arc_flutter/app/misc/user_data.dart';
-import 'package:clean_arc_flutter/app/ui/pages/mid/controller.dart';
-import 'package:clean_arc_flutter/app/ui/pages/home/controller.dart';
-import 'package:clean_arc_flutter/app/ui/pages/login/controller.dart';
-import 'package:clean_arc_flutter/app/ui/pages/login/presenter.dart';
-import 'package:clean_arc_flutter/app/ui/pages/main/controller.dart';
-import 'package:clean_arc_flutter/app/ui/pages/profile/controller.dart';
-import 'package:clean_arc_flutter/app/ui/pages/splash/controller.dart';
+import 'package:modular_1/app/misc/user_data.dart';
+import 'package:modular_1/app/ui/pages/mid/controller.dart';
+import 'package:modular_1/app/ui/pages/home/controller.dart';
+import 'package:modular_1/app/ui/pages/login/controller.dart';
+import 'package:modular_1/app/ui/pages/login/presenter.dart';
+import 'package:modular_1/app/ui/pages/main/controller.dart';
+import 'package:modular_1/app/ui/pages/profile/controller.dart';
+import 'package:modular_1/app/ui/pages/splash/controller.dart';
 import 'package:injector/injector.dart';
 
 class ControllerModule {

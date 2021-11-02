@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:clean_arc_flutter/data/payload/api/auth/login_api_payload.dart';
-import 'package:clean_arc_flutter/data/payload/contracts/auth_request.dart';
-import 'package:clean_arc_flutter/data/persistences/repositories/auth_repository.dart';
-import 'package:clean_arc_flutter/domains/entities/user.dart';
+import 'package:modular_1/data/payload/api/auth/login_api_payload.dart';
+import 'package:modular_1/data/payload/contracts/auth_request.dart';
+import 'package:modular_1/data/persistences/repositories/auth_repository.dart';
+import 'package:modular_1/domains/entities/user.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class LoginUseCase extends UseCase<User, LoginRequestInterface> {

@@ -1,14 +1,13 @@
-import 'package:clean_arc_flutter/app/infrastructure/event/connection.dart';
-import 'package:clean_arc_flutter/app/infrastructure/event/error.dart';
-import 'package:clean_arc_flutter/app/infrastructure/event/reset_ui.dart';
-import 'package:clean_arc_flutter/app/misc/RouteArguments.dart';
+import 'package:modular_1/app/infrastructure/event/connection.dart';
+import 'package:modular_1/app/infrastructure/event/error.dart';
+import 'package:modular_1/app/infrastructure/event/reset_ui.dart';
+import 'package:modular_1/app/misc/RouteArguments.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import '../app_component.dart';
 import '../view_utils.dart';
-
 
 class BaseController extends Controller {
   EventBus _eventBus = AppComponent.getInjector().get<EventBus>();

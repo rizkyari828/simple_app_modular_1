@@ -1,9 +1,8 @@
 import 'dart:async';
 
-import 'package:clean_arc_flutter/data/persistences/repositories/user_repositories.dart';
-import 'package:clean_arc_flutter/domains/entities/user.dart';
+import 'package:modular_1/data/persistences/repositories/user_repositories.dart';
+import 'package:modular_1/domains/entities/user.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-
 
 // Declaring usecase of the entity
 class GetUserUseCase extends UseCase<User, void> {

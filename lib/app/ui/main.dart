@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:clean_arc_flutter/app/infrastructure/app_component.dart';
-import 'package:clean_arc_flutter/app/infrastructure/router.dart'
-    as CustomRouter;
-import 'package:clean_arc_flutter/app/ui/pages/splash/view.dart';
-import 'package:clean_arc_flutter/app/ui/res/generated/i18n.dart';
+import 'package:modular_1/app/infrastructure/app_component.dart';
+import 'package:modular_1/app/infrastructure/router.dart' as CustomRouter;
+import 'package:modular_1/app/ui/pages/splash/view.dart';
+import 'package:modular_1/app/ui/res/generated/i18n.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -36,7 +35,6 @@ class MyApp extends StatelessWidget {
       AppComponent.getInjector().get<FirebaseAnalyticsObserver>();
   MyApp() : _router = CustomRouter.Router() {
     _initLogger(); // init logger
-   
   }
   @override
   Widget build(BuildContext context) {

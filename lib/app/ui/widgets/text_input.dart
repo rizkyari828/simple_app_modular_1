@@ -1,9 +1,9 @@
-import 'package:clean_arc_flutter/app/misc/constants.dart';
+import 'package:modular_1/app/misc/constants.dart';
 import 'package:flutter/material.dart';
 
 class CommonTextInput extends StatelessWidget {
   final TextStyle? textStyle, textInputStyle;
-  final bool? isError, isDense,readonly,interactive;
+  final bool? isError, isDense, readonly, interactive;
   final String? errorText;
   final TextEditingController? _controller;
   final FormFieldValidator<String>? validator;
@@ -15,7 +15,7 @@ class CommonTextInput extends StatelessWidget {
   final Function()? onVisibilityPressed;
   final TextInputType? keyboardType;
   final EdgeInsetsGeometry outerPadding, innerPadding;
-  
+
   /// HATI-HATI KETIKA MENGEDIT REUSABLE WIDGET/COMPONENT
   /// Pastikan tidak merusak tampilan yang lainnya
   /// Karena REUSABLE WIDGET/COMPONENT memiliki arti widget/component ini dipakai di berbagai screen/layar

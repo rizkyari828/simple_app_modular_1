@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:async';
 
-import 'package:clean_arc_flutter/app/infrastructure/event/dio_error.dart';
-import 'package:clean_arc_flutter/data/infrastructures/api_service_interface.dart';
+import 'package:modular_1/app/infrastructure/event/dio_error.dart';
+import 'package:modular_1/data/infrastructures/api_service_interface.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:event_bus/event_bus.dart';

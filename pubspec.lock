@@ -309,15 +309,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0+3"
-  firstapp:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: c02d2a4405bb0a8eeeff3eab18e1090e54939a21
-      url: "https://github.com/muflihmajid/firstappflutter"
-    source: git
-    version: "1.0.0+1"
   flutter:
     dependency: "direct main"
     description: flutter

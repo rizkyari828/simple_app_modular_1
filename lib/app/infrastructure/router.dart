@@ -1,6 +1,6 @@
-import 'package:clean_arc_flutter/app/ui/pages/login/view.dart';
-import 'package:clean_arc_flutter/app/ui/pages/main/view.dart';
-import 'package:clean_arc_flutter/app/ui/pages/pages.dart';
+import 'package:modular_1/app/ui/pages/login/view.dart';
+import 'package:modular_1/app/ui/pages/main/view.dart';
+import 'package:modular_1/app/ui/pages/pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -1,10 +1,10 @@
-import 'package:clean_arc_flutter/app/infrastructure/app_component.dart';
-import 'package:clean_arc_flutter/app/misc/constants.dart';
-import 'package:clean_arc_flutter/app/ui/pages/mid/view.dart';
-import 'package:clean_arc_flutter/app/ui/pages/home/view.dart';
-import 'package:clean_arc_flutter/app/ui/pages/main/controller.dart';
-import 'package:clean_arc_flutter/app/ui/pages/profile/view.dart';
-import 'package:clean_arc_flutter/app/ui/res/generated/i18n.dart';
+import 'package:modular_1/app/infrastructure/app_component.dart';
+import 'package:modular_1/app/misc/constants.dart';
+import 'package:modular_1/app/ui/pages/mid/view.dart';
+import 'package:modular_1/app/ui/pages/home/view.dart';
+import 'package:modular_1/app/ui/pages/main/controller.dart';
+import 'package:modular_1/app/ui/pages/profile/view.dart';
+import 'package:modular_1/app/ui/res/generated/i18n.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter/material.dart';
 
@@ -64,14 +64,14 @@ class _MainPageState extends ViewState<MainPage, MainController>
                   AssetImage('lib/app/ui/assets/icons/attend.png'),
                   size: 30,
                 ),
-                title: new Text(S.of(context)?.tourism?? ""),
+                title: new Text(S.of(context)?.tourism ?? ""),
               ),
               new BottomNavigationBarItem(
                 icon: new ImageIcon(
                   AssetImage('lib/app/ui/assets/icons/attend.png'),
                   size: 30,
                 ),
-                title: new Text(S.of(context)?.profile_bar?? ""),
+                title: new Text(S.of(context)?.profile_bar ?? ""),
               ),
             ],
             currentIndex: controller.tabIndex ?? 0,

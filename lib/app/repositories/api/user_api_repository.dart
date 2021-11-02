@@ -1,18 +1,17 @@
+import 'package:modular_1/app/infrastructure/endpoints.dart';
+import 'package:modular_1/data/infrastructures/api_service_interface.dart';
+import 'package:modular_1/data/persistences/mappers/user_mapper.dart';
+import 'package:modular_1/data/persistences/repositories/user_repositories.dart';
 
-import 'package:clean_arc_flutter/app/infrastructure/endpoints.dart';
-import 'package:clean_arc_flutter/data/infrastructures/api_service_interface.dart';
-import 'package:clean_arc_flutter/data/persistences/mappers/user_mapper.dart';
-import 'package:clean_arc_flutter/data/persistences/repositories/user_repositories.dart';
-
-
-import 'package:clean_arc_flutter/domains/entities/user.dart';
+import 'package:modular_1/domains/entities/user.dart';
 
 class UserApiRepository extends UserRepository {
   late UserMapper _mapper;
   late ApiServiceInterface _service;
   late Endpoints _endpoints;
 
-  UserApiRepository(ApiServiceInterface service, Endpoints endpoints, UserMapper mapper) {
+  UserApiRepository(
+      ApiServiceInterface service, Endpoints endpoints, UserMapper mapper) {
     _mapper = mapper;
     _service = service;
     _endpoints = endpoints;
@@ -28,7 +27,6 @@ class UserApiRepository extends UserRepository {
     return _mapper.getUserApiConverter(resp);
   }
 
-
   @override
   Future<List<User>>? getAll() {
     // TODO: implement getAll
@@ -40,6 +38,4 @@ class UserApiRepository extends UserRepository {
     // TODO: implement verifyUserByPassword
     return null;
   }
-
-
 }

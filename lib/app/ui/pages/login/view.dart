@@ -1,9 +1,9 @@
-import 'package:clean_arc_flutter/app/infrastructure/app_component.dart';
-import 'package:clean_arc_flutter/app/ui/pages/login/controller.dart';
-import 'package:clean_arc_flutter/app/ui/res/generated/i18n.dart';
-import 'package:clean_arc_flutter/app/ui/widgets/button.dart';
-import 'package:clean_arc_flutter/app/ui/widgets/loading.dart';
-import 'package:clean_arc_flutter/app/ui/widgets/text_input.dart';
+import 'package:modular_1/app/infrastructure/app_component.dart';
+import 'package:modular_1/app/ui/pages/login/controller.dart';
+import 'package:modular_1/app/ui/res/generated/i18n.dart';
+import 'package:modular_1/app/ui/widgets/button.dart';
+import 'package:modular_1/app/ui/widgets/loading.dart';
+import 'package:modular_1/app/ui/widgets/text_input.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter/material.dart';
 

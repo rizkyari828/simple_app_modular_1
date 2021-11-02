@@ -1,7 +1,5 @@
-import 'package:clean_arc_flutter/app/infrastructure/contract/base_controller.dart';
-import 'package:clean_arc_flutter/app/misc/user_data.dart';
-
-
+import 'package:modular_1/app/infrastructure/contract/base_controller.dart';
+import 'package:modular_1/app/misc/user_data.dart';
 
 class MainController extends BaseController {
   UserData _sp;
@@ -38,5 +36,4 @@ class MainController extends BaseController {
     this._tabIndex = i;
     refreshUI();
   }
-
 }
