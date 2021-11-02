@@ -38,9 +38,7 @@ class _SplashPageState extends ViewState<SplashPage, SplashController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Flexible(
-              child: Container(
-                child: splashImage,
-              ),
+              child: Container(child: Text("Sales Application")),
             ),
             SizedBox(height: 150),
           ],

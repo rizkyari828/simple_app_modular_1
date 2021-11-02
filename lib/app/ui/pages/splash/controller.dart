@@ -8,7 +8,7 @@ class SplashController extends BaseController {
   UserData? _userData;
 
   SplashController(this._userData) : super() {
-    _navigate();
+    // _navigate();
   }
 
   @override
@@ -16,10 +16,10 @@ class SplashController extends BaseController {
     super.initListeners();
   }
 
-  _navigate() {
-    var _duration = new Duration(seconds: 1);
-    return new Timer(_duration, () {
-      Navigator.pushReplacementNamed(getContext(), Pages.login);
-    });
-  }
+  // _navigate() {
+  //   var _duration = new Duration(seconds: 1);
+  //   return new Timer(_duration, () {
+  //     Navigator.pushReplacementNamed(getContext(), Pages.login);
+  //   });
+  // }
 }
