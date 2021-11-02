@@ -21,7 +21,9 @@ main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runZonedGuarded<Future<void>>(() async {
-      runApp(MyApp()); // run app
+      runApp(MyApp(
+        arguments: '',
+      )); // run app
     }, FirebaseCrashlytics.instance.recordError);
   });
 }
@@ -39,6 +41,7 @@ void _initLogger() {
 }
 
 class MyApp extends StatelessWidget {
+  final String arguments;
   // This widget is the root of your application.
   final CustomRouter.Router _router;
   static bool isConnectedToInternet = false;
@@ -46,7 +49,7 @@ class MyApp extends StatelessWidget {
   final FirebaseAnalyticsObserver _observer =
       AppComponent.getInjector().get<FirebaseAnalyticsObserver>();
 
-  MyApp() : _router = CustomRouter.Router() {
+  MyApp({Key? key, required this.arguments}) : _router = CustomRouter.Router() {
     _initLogger(); // init logger
   }
 
