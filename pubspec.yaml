@@ -30,7 +30,11 @@ dependencies:
   firebase_messaging: ^10.0.4
   firebase_remote_config: ^0.10.0+3
   shared_preferences: ^2.0.6
+  flutter_modular: ^4.0.1
   dio_http_cache: ^0.3.0
+  firstapp:
+    git:
+      url: https://github.com/muflihmajid/firstappflutter
   dio: ^4.0.0
   connectivity: ^3.0.6
   permission_handler: ^8.1.4+2
@@ -53,5 +57,4 @@ flutter:
   assets:
    - lib/app/ui/assets/images/
    - lib/app/ui/assets/icons/
-   - lib/app/ui/assets/misc/
    - .env
