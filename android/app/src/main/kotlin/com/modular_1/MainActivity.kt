@@ -1,4 +1,4 @@
-package com.example.clean_arc_flutter
+package com.modular_1
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
