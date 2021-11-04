@@ -43,8 +43,8 @@ class MyApp extends StatelessWidget {
   final CustomRouter.Router _router;
   static bool isConnectedToInternet = false;
   final _navigatorKey = GlobalKey<NavigatorState>();
-  final FirebaseAnalyticsObserver _observer =
-      AppComponent.getInjector().get<FirebaseAnalyticsObserver>();
+  // final FirebaseAnalyticsObserver _observer =
+  //     AppComponent.getInjector().get<FirebaseAnalyticsObserver>();
 
   MyApp() : _router = CustomRouter.Router() {
     _initLogger(); // init logger
@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashPage(),
       onGenerateRoute: _router.getRoute,
-      navigatorObservers: [_router.routeObserver, _observer],
+      // navigatorObservers: [_router.routeObserver, _observer],
     );
   }
 }
