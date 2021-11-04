@@ -4,9 +4,9 @@ import 'package:modular_1/app/infrastructure/app_component.dart';
 import 'package:modular_1/app/infrastructure/router.dart' as CustomRouter;
 import 'package:modular_1/app/ui/pages/splash/view.dart';
 import 'package:modular_1/app/ui/res/generated/i18n.dart';
-import 'package:firebase_analytics/observer.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+// import 'package:firebase_analytics/observer.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,19 +18,19 @@ main() async {
   AppComponent.init(); // init dependency
   await _initFabric(); // init
 
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
-    runZonedGuarded<Future<void>>(() async {
       runApp(MyApp()); // run app
-    }, FirebaseCrashlytics.instance.recordError);
-  });
+  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+  //     .then((_) {
+  //   runZonedGuarded<Future<void>>(() async {
+  //   }, FirebaseCrashlytics.instance.recordError);
+  // });
 }
 
 Future<void> _initFabric() async {
-  await Firebase.initializeApp();
-  await FirebaseCrashlytics.instance
-      .setCrashlyticsCollectionEnabled(kReleaseMode);
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  // await Firebase.initializeApp();
+  // await FirebaseCrashlytics.instance
+  //     .setCrashlyticsCollectionEnabled(kReleaseMode);
+  // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 }
 
 void _initLogger() {

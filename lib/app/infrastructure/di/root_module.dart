@@ -5,12 +5,12 @@ import 'package:modular_1/app/infrastructure/encrypter.dart';
 import 'package:modular_1/app/infrastructure/endpoints.dart';
 import 'package:modular_1/app/infrastructure/persistences/api_service.dart';
 import 'package:modular_1/app/misc/user_data.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
+// import 'package:firebase_analytics/firebase_analytics.dart';
+// import 'package:firebase_analytics/observer.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:event_bus/event_bus.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:injector/injector.dart';
@@ -23,8 +23,8 @@ class RootModule {
     injector.registerDependency<TimeConverter>(() => TimeConverter());
     injector
         .registerSingleton<UserData>(() => UserData(injector.get<Encrypter>()));
-    injector
-        .registerSingleton<FirebaseMessaging>(() => FirebaseMessaging.instance);
+    // injector
+    //     .registerSingleton<FirebaseMessaging>(() => FirebaseMessaging.instance);
 
     injector.registerDependency<Dio>(() {
       var dio = Dio();
@@ -63,14 +63,14 @@ class RootModule {
       return ApiService(injector.get<Dio>(), injector.get<EventBus>());
     });
 
-    injector.registerSingleton<FirebaseAnalytics>(() {
-      return FirebaseAnalytics();
-    });
+    // injector.registerSingleton<FirebaseAnalytics>(() {
+    //   return FirebaseAnalytics();
+    // });
 
-    injector.registerSingleton<FirebaseAnalyticsObserver>(() {
-      return FirebaseAnalyticsObserver(
-          analytics: injector.get<FirebaseAnalytics>());
-    });
+    // injector.registerSingleton<FirebaseAnalyticsObserver>(() {
+    //   return FirebaseAnalyticsObserver(
+    //       analytics: injector.get<FirebaseAnalytics>());
+    // });
 
     injector.registerDependency<Encrypter>(() {
       return Encrypter();
