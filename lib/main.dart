@@ -13,6 +13,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+// TEST PUSH AJA
+
 main() async {
   await dotenv.load(fileName: '.env'); // load env
   AppComponent.init(); // init dependency
